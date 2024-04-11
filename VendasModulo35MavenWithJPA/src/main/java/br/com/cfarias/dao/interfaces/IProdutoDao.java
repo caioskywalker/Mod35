@@ -1,5 +1,5 @@
 package br.com.cfarias.dao.interfaces;
 
-public class IProdutoDao {
+public interface IProdutoDao {
 
 }
