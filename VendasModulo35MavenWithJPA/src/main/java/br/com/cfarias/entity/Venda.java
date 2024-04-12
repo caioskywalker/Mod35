@@ -130,7 +130,20 @@ public class Venda {
 	
 	public void adicionarProduto(Produto produto, Integer quantidade) {
 		validarStatus();
-		
+		Optional<ProdutoQuantidade> op = 
+				produtosQuantidade.stream().filter(filter -> filter.getProduto().getCodigo().equals(produto.getCodigo())).findAny();
+		if (op.isPresent()) {
+			ProdutoQuantidade produtpQtd = op.get();
+			produtpQtd.adicionar(quantidade);
+		} else {
+			// Criar fabrica para criar ProdutoQuantidade
+			ProdutoQuantidade prod = new ProdutoQuantidade();
+			prod.setVenda(this);
+			prod.setProduto(produto);
+			prod.adicionar(quantidade);
+			produtosQuantidade.add(prod);
+		}
+		recalcularValorTotalVenda();
 		
 	}
 	
@@ -141,6 +154,48 @@ public class Venda {
 		}
 		
 	}
+	
+	public void recalcularValorTotalVenda() {
+		//validarStatus();
+		BigDecimal valorTotal = BigDecimal.ZERO;
+		for (ProdutoQuantidade prod : this.produtosQuantidade) {
+			valorTotal = valorTotal.add(prod.getValorTotal());
+		}
+		this.valorTotal = valorTotal;
+	}
+	
+	public Integer getQuantidadeTotalProdutos() {
+		// Soma a quantidade getQuantidade() de todos os objetos ProdutoQuantidade
+		int result = produtosQuantidade.stream()
+		  .reduce(0, (partialCountResult, prod) -> partialCountResult + prod.getQuantidade(), Integer::sum);
+		return result;
+	}
+	
+	public void removerTodosProdutos() {
+		validarStatus();
+		produtosQuantidade.clear();
+		valorTotal = BigDecimal.ZERO;
+	}
+	
+	public void removerProduto(Produto produto, Integer quantidade) {
+		validarStatus();
+		Optional<ProdutoQuantidade> op = 
+				produtosQuantidade.stream().filter(filter -> filter.getProduto().getCodigo().equals(produto.getCodigo())).findAny();
+		
+		if (op.isPresent()) {
+			ProdutoQuantidade produtpQtd = op.get();
+			if (produtpQtd.getQuantidade()>quantidade) {
+				produtpQtd.remover(quantidade);
+				recalcularValorTotalVenda();
+			} else {
+				produtosQuantidade.remove(op.get());
+				recalcularValorTotalVenda();
+			}
+			
+		}
+	}
+	
+	
 	
 	
 	
