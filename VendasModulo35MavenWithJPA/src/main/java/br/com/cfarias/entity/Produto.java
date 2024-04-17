@@ -4,9 +4,11 @@ import java.math.BigDecimal;
 
 import javax.persistence.*;
 
+import br.com.cfarias.dao.persistence.Persistente;
+
 @Entity
 @Table(name = "tb_produto")
-public class Produto {
+public class Produto implements Persistente {
 	
 	
 	@Id
@@ -41,12 +43,12 @@ public class Produto {
 	}
 
 
-	public Long getIdProduto() {
+	public Long getId() {
 		return idProduto;
 	}
 
 
-	public void setIdProduto(Long idProduto) {
+	public void setId(Long idProduto) {
 		this.idProduto = idProduto;
 	}
 

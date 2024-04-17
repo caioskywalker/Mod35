@@ -4,9 +4,11 @@ import java.util.*;
 
 import javax.persistence.*;
 
+import br.com.cfarias.dao.persistence.Persistente;
+
 @Entity
 @Table(name = "tb_cliente")
-public class Cliente {
+public class Cliente implements Persistente {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cliente_seq")
@@ -41,12 +43,12 @@ public class Cliente {
 	}
 
 
-	public Long getIdCliente() {
+	public Long getId() {
 		return idCliente;
 	}
 
 
-	public void setIdCliente(Long idCliente) {
+	public void setId(Long idCliente) {
 		this.idCliente = idCliente;
 	}
 
@@ -89,6 +91,8 @@ public class Cliente {
 	public void setEnderecos(Set<Endereco> enderecos) {
 		this.enderecos = enderecos;
 	}
+
+
 	
 	
 	

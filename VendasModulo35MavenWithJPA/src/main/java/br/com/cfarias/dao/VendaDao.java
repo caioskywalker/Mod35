@@ -1,5 +1,12 @@
 package br.com.cfarias.dao;
 
-public class VendaDao {
+import br.com.cfarias.dao.generic.GenericDao;
+import br.com.cfarias.dao.interfaces.IVendaDao;
+import br.com.cfarias.entity.Venda;
 
+public class VendaDao extends GenericDao<Venda, Long> implements IVendaDao{
+
+	public VendaDao() {
+		super(Venda.class);
+	}
 }

@@ -9,9 +9,11 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import br.com.cfarias.dao.persistence.Persistente;
+
 @Entity
 @Table(name = "tb_venda")
-public class Venda {
+public class Venda implements Persistente{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "venda_seq")
@@ -39,11 +41,11 @@ public class Venda {
 	private Status status;
 
 
-	public Long getIdVenda() {
+	public Long getId() {
 		return idVenda;
 	}
 
-	public void setIdVenda(Long idVenda) {
+	public void setId(Long idVenda) {
 		this.idVenda = idVenda;
 	}
 

@@ -2,9 +2,11 @@ package br.com.cfarias.entity;
 
 import javax.persistence.*;
 
+import br.com.cfarias.dao.persistence.Persistente;
+
 @Entity
 @Table(name = "tb_endereco")
-public class Endereco {
+public class Endereco implements Persistente{
 	
 	
 	@Id
@@ -50,11 +52,11 @@ public class Endereco {
 	
 	
 
-	public Long getIdEndereco() {
+	public Long getId() {
 		return idEndereco;
 	}
 
-	public void setIdEndereco(Long idEndereco) {
+	public void setId(Long idEndereco) {
 		this.idEndereco = idEndereco;
 	}
 

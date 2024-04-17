@@ -4,9 +4,11 @@ import java.math.BigDecimal;
 
 import javax.persistence.*;
 
+import br.com.cfarias.dao.persistence.Persistente;
+
 @Entity
 @Table(name = "tb_produto_quantidade")
-public class ProdutoQuantidade {
+public class ProdutoQuantidade implements Persistente {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="prod_qtd_seq")
@@ -30,11 +32,11 @@ public class ProdutoQuantidade {
 	
 	
 
-	public Long getIdProdutoQuantidade() {
+	public Long getId() {
 		return idProdutoQuantidade;
 	}
 
-	public void setIdProdutoQuantidade(Long idProdutoQuantidade) {
+	public void setId(Long idProdutoQuantidade) {
 		this.idProdutoQuantidade = idProdutoQuantidade;
 	}
 
