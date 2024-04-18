@@ -24,7 +24,7 @@ public class Cliente implements Persistente {
 	@Column(name = "telefone", nullable = false)
 	private Long telefone;
 	
-	@OneToMany(mappedBy = "endereco", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
 	private Set<Endereco> enderecos;
 	
 	
@@ -90,6 +90,11 @@ public class Cliente implements Persistente {
 
 	public void setEnderecos(Set<Endereco> enderecos) {
 		this.enderecos = enderecos;
+	}
+	
+	public void addEndereco(Endereco endereco) {
+		enderecos = new HashSet<Endereco>();
+		enderecos.add(endereco);
 	}
 
 

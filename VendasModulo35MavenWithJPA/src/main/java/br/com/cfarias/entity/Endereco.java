@@ -29,7 +29,7 @@ public class Endereco implements Persistente{
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_cliente_fk",
 			foreignKey = @ForeignKey(name = "fk_endereco_cliente"),
-			referencedColumnName = "idCliente", nullable = false
+			referencedColumnName = "idCliente", nullable = true
 			)
 	private Cliente cliente;
 

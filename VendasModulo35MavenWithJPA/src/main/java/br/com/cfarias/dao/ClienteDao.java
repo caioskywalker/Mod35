@@ -10,5 +10,8 @@ public class ClienteDao extends GenericDao<Cliente, Long> implements IClienteDao
 		super(Cliente.class);
 	}
 	
+
+	
+	
 	
 }
